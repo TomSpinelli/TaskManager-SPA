@@ -1,0 +1,58 @@
+<div class="container">
+    <div (carObj)='random($event)'>
+        <form class="form-horizontal">
+            <input type="hidden" [(ngModel)]="task.id" name="id" />
+            <div class="form-group">
+                <label class="control-label col-sm-2">TaskList ID:</label>
+                <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="taskListId" name="taskListId" class="form-control" readonly />
+                </div>
+            </div>
+            <div class="form-group">
+             <label class="control-label col-sm-2">Task Name:</label>
+                <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="taskListName" name="taskListName" class="form-control" readonly />
+                </div>
+            </div>
+            <hr class="mt-2 mb-3"/>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Task Name:</label>
+                <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="task.name" name="name" class="form-control" />
+                </div>
+            </div>   
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8"  align="center">
+                    <button (click)="addTask()" class="btn btn-primary" style="background: rgb(120, 104, 179);" >Insert</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <table class="table table-striped table-bordered">
+            <tr style="background: rgb(120, 104, 179);"> 
+                <th>ID</th>
+                <th>Name</th>
+                <th>Finished</th>
+                <th>Finish/Open</th>
+                <th>Delete</th>
+            </tr>
+            <tr *ngFor="let task of tasks">
+                <td>{{task.id}}</td>
+                <td>{{task.name}}</td>
+                <td>{{task.taskDone}}</td>
+                <td>    
+                    <button (click)="switchTaskStatus(task.id)" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-refresh"></span></button>
+                </td>
+                <td>    
+                    <button  (click)="deleteTask(task.id)" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+            </tr>
+        </table>
+        <div  align="center">
+            <button class="btn btn-primary" routerLink="/addTaskList" style="background: rgb(120, 104, 179);" >Go Back</button>
+        </div>
+    </div>
+</div>
